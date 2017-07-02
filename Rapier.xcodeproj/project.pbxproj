@@ -13,6 +13,8 @@
 		9F3263B51F030DF700C8B98F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F3263B41F030DF700C8B98F /* MainMenu.xib */; };
 		9F3263B71F031CB200C8B98F /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3263B61F031CB200C8B98F /* StatusMenuController.swift */; };
 		9F3263B91F031E7C00C8B98F /* OpenVpnProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3263B81F031E7C00C8B98F /* OpenVpnProcess.swift */; };
+		9F625AD01F08F1B600A731DC /* ConfigurationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F625ACF1F08F1B600A731DC /* ConfigurationList.swift */; };
+		9F625AD21F08F8BB00A731DC /* ConfigurationListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F625AD11F08F8BB00A731DC /* ConfigurationListTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		9F3263B41F030DF700C8B98F /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		9F3263B61F031CB200C8B98F /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 		9F3263B81F031E7C00C8B98F /* OpenVpnProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenVpnProcess.swift; sourceTree = "<group>"; };
+		9F625ACF1F08F1B600A731DC /* ConfigurationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationList.swift; sourceTree = "<group>"; };
+		9F625AD11F08F8BB00A731DC /* ConfigurationListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationListTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 				9F3263B41F030DF700C8B98F /* MainMenu.xib */,
 				9F3263B61F031CB200C8B98F /* StatusMenuController.swift */,
 				9F3263B81F031E7C00C8B98F /* OpenVpnProcess.swift */,
+				9F625ACF1F08F1B600A731DC /* ConfigurationList.swift */,
 			);
 			path = Rapier;
 			sourceTree = "<group>";
@@ -92,6 +97,7 @@
 			children = (
 				9F3263A91F030C8400C8B98F /* OpenVpnProcessTests.swift */,
 				9F3263AB1F030C8400C8B98F /* Info.plist */,
+				9F625AD11F08F8BB00A731DC /* ConfigurationListTests.swift */,
 			);
 			path = RapierTests;
 			sourceTree = "<group>";
@@ -200,6 +206,7 @@
 			files = (
 				9F3263B71F031CB200C8B98F /* StatusMenuController.swift in Sources */,
 				9F3263B91F031E7C00C8B98F /* OpenVpnProcess.swift in Sources */,
+				9F625AD01F08F1B600A731DC /* ConfigurationList.swift in Sources */,
 				9F3263981F030C8400C8B98F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F625AD21F08F8BB00A731DC /* ConfigurationListTests.swift in Sources */,
 				9F3263AA1F030C8400C8B98F /* OpenVpnProcessTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
