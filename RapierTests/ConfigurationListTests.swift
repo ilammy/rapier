@@ -62,7 +62,7 @@ class ConfigurationListTests: XCTestCase {
 class LeMonitor: ConfigurationListObserver {
     var updateCount = 0
 
-    func didUpdateConfigurationList() {
+    func didUpdateConfigurationList(_ configurations: [Configuration]) {
         updateCount += 1
     }
 }

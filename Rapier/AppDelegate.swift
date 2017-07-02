@@ -8,4 +8,9 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    var configurations: ConfigurationList = ConfigurationList()
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        configurations.loadConfigurations()
+    }
 }

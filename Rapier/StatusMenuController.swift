@@ -6,7 +6,7 @@
 
 import Cocoa
 
-class StatusMenuController: NSObject {
+class StatusMenuController: NSObject, ConfigurationListObserver {
     @IBOutlet weak var menu: NSMenu!
 
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
@@ -15,18 +15,23 @@ class StatusMenuController: NSObject {
         statusItem.title = "Rapier"
         statusItem.menu = menu
 
-        addConfigurations()
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
+        appDelegate.configurations.subscribe(self)
+    }
+
+    func didUpdateConfigurationList(_ configurations: [Configuration]) {
+        addConfigurations(configurations)
     }
 
     @IBAction func quitClicked(_ sender: NSMenuItem) {
         NSApplication.shared().terminate(self)
     }
 
-    private func addConfigurations() {
-        let configurations = [("Default", "~/Documents/openvpn.conf")]; // TOOD: hardcode
+    private func addConfigurations(_ configurations: [Configuration]) {
+        // TODO: remove previously added configurations (if any)
 
-        for (i, (confName, confPath)) in configurations.enumerated() {
-            menu.insertItem(configurationItem(confName, confPath), at: i)
+        for (i, configuration) in configurations.enumerated() {
+            menu.insertItem(configurationItem(configuration), at: i)
         }
 
         if configurations.count > 0 {
@@ -34,12 +39,12 @@ class StatusMenuController: NSObject {
         }
     }
 
-    private func configurationItem(_ name: String, _ path: String) -> NSMenuItem {
+    private func configurationItem(_ configuration: Configuration) -> NSMenuItem {
         let item = NSMenuItem()
 
-        item.title = name
-        item.keyEquivalent = path
-        item.toolTip = path
+        item.title = configuration.name
+        item.keyEquivalent = configuration.path
+        item.toolTip = configuration.path
         item.target = self
         item.action = #selector(StatusMenuController.configurationClicked(_:))
         item.state = 0

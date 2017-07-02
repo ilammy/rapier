@@ -47,7 +47,7 @@ class ConfigurationList {
 
     private func didUpdateConfigurationList() {
         for observer in observers {
-            observer.didUpdateConfigurationList()
+            observer.didUpdateConfigurationList(self.configurations)
         }
     }
 }
@@ -55,5 +55,5 @@ class ConfigurationList {
 /// Receiver of notifications about configuration list changes.
 protocol ConfigurationListObserver: class {
     /// Called when configuration list has been changed.
-    func didUpdateConfigurationList()
+    func didUpdateConfigurationList(_ configurations: [Configuration])
 }
