@@ -7,7 +7,7 @@
 import Foundation
 
 /// Running OpenVPN process.
-class OpenVpnProcess: VpnConnection {
+class OpenVpnProcess {
 
     var delegate: OpenVpnProcessDelegate?
 
@@ -49,16 +49,6 @@ class OpenVpnProcess: VpnConnection {
     func terminate() {
         process?.terminate()
         process = nil
-    }
-
-    // MARK: - VpnConnection
-
-    func connect() {
-        launch()
-    }
-
-    func disconnect() {
-        terminate()
     }
 }
 
