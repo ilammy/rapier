@@ -20,6 +20,7 @@ class StatusMenuController: NSObject, ConfigurationListObserver {
     }
 
     func didUpdateConfigurationList(_ configurations: [Configuration]) {
+        cleanConfigurations()
         addConfigurations(configurations)
     }
 
@@ -27,15 +28,20 @@ class StatusMenuController: NSObject, ConfigurationListObserver {
         NSApplication.shared().terminate(self)
     }
 
-    private func addConfigurations(_ configurations: [Configuration]) {
-        // TODO: remove previously added configurations (if any)
+    private var configurationMenuItems: [NSMenuItem] = []
 
-        for (i, configuration) in configurations.enumerated() {
-            menu.insertItem(configurationItem(configuration), at: i)
+    private func cleanConfigurations() {
+        for item in configurationMenuItems {
+            menu.removeItem(item)
         }
+        configurationMenuItems = []
+    }
 
-        if configurations.count > 0 {
-            menu.insertItem(NSMenuItem.separator(), at: configurations.count)
+    private func addConfigurations(_ configurations: [Configuration]) {
+        for (i, configuration) in configurations.enumerated() {
+            let item = configurationItem(configuration)
+            menu.insertItem(item, at: i)
+            configurationMenuItems.append(item)
         }
     }
 
@@ -43,7 +49,6 @@ class StatusMenuController: NSObject, ConfigurationListObserver {
         let item = NSMenuItem()
 
         item.title = configuration.name
-        item.keyEquivalent = configuration.path
         item.toolTip = configuration.path
         item.target = self
         item.action = #selector(StatusMenuController.configurationClicked(_:))
@@ -53,7 +58,7 @@ class StatusMenuController: NSObject, ConfigurationListObserver {
     }
 
     @objc private func configurationClicked(_ sender: NSMenuItem) {
-        NSLog("configuration selected: \(sender.keyEquivalent)")
+        NSLog("configuration selected: \(sender.title) @ \(configurationMenuItems.index(of: sender) ?? -1)")
 
         sender.state = (sender.state != 0) ? 0 : 1;
     }
