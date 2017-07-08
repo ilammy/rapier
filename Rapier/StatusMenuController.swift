@@ -6,50 +6,37 @@
 
 import Cocoa
 
-class StatusMenuController: NSObject, ConfigurationListObserver {
+class StatusMenuController: NSObject {
     @IBOutlet weak var menu: NSMenu!
 
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
 
+    var delegate: StatusMenuDelegate?
+
     override func awakeFromNib() {
         statusItem.title = "Rapier"
         statusItem.menu = menu
-
-        let appDelegate = NSApplication.shared().delegate as! AppDelegate
-        appDelegate.configurations.subscribe(self)
-    }
-
-    func didUpdateConfigurationList(_ configurations: [Configuration]) {
-        cleanConfigurations()
-        addConfigurations(configurations)
     }
 
     @IBAction func quitClicked(_ sender: NSMenuItem) {
-        NSApplication.shared().terminate(self)
+        delegate?.quitClicked()
     }
 
-    private var configurationMenuItems: [NSMenuItem] = []
-
-    private func cleanConfigurations() {
-        for item in configurationMenuItems {
-            menu.removeItem(item)
-        }
-        configurationMenuItems = []
-    }
-
-    private func addConfigurations(_ configurations: [Configuration]) {
-        for (i, configuration) in configurations.enumerated() {
-            let item = configurationItem(configuration)
-            menu.insertItem(item, at: i)
-            configurationMenuItems.append(item)
+    var configurations: [String] = [] {
+        willSet(newConfigurations) {
+            for index in (0..<configurations.count) {
+                menu.removeItem(at: index)
+            }
+            for (index, name) in newConfigurations.enumerated() {
+                menu.insertItem(configurationItem(name), at: index)
+            }
         }
     }
 
-    private func configurationItem(_ configuration: Configuration) -> NSMenuItem {
+    private func configurationItem(_ name: String) -> NSMenuItem {
         let item = NSMenuItem()
 
-        item.title = configuration.name
-        item.toolTip = configuration.path
+        item.title = name
         item.target = self
         item.action = #selector(StatusMenuController.configurationClicked(_:))
         item.state = 0
@@ -58,8 +45,13 @@ class StatusMenuController: NSObject, ConfigurationListObserver {
     }
 
     @objc private func configurationClicked(_ sender: NSMenuItem) {
-        NSLog("configuration selected: \(sender.title) @ \(configurationMenuItems.index(of: sender) ?? -1)")
+        let index = menu.index(of: sender)
 
-        sender.state = (sender.state != 0) ? 0 : 1;
+        delegate?.configurationClicked(index)
     }
+}
+
+protocol StatusMenuDelegate {
+    func configurationClicked(_ index: Int)
+    func quitClicked()
 }

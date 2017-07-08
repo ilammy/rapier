@@ -7,12 +7,16 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application" customClass="NSObject">
+        <customObject id="-3" userLabel="Application">
             <connections>
-                <outlet property="delegate" destination="zpz-QQ-ddx" id="zHx-E2-Qy9"/>
+                <outlet property="delegate" destination="zpz-QQ-ddx" id="1Ql-HB-Y2b"/>
             </connections>
         </customObject>
-        <customObject id="zpz-QQ-ddx" customClass="AppDelegate" customModule="Rapier" customModuleProvider="target"/>
+        <customObject id="zpz-QQ-ddx" customClass="AppDelegate" customModule="Rapier" customModuleProvider="target">
+            <connections>
+                <outlet property="statusMenuController" destination="FZI-9W-nXu" id="IZo-xP-Lb1"/>
+            </connections>
+        </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="FZI-9W-nXu" customClass="StatusMenuController" customModule="Rapier" customModuleProvider="target">
             <connections>

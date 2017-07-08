@@ -7,10 +7,23 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, StatusMenuDelegate {
+    @IBOutlet weak var statusMenuController: StatusMenuController!
+
     var configurations: ConfigurationList = ConfigurationList()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         configurations.loadConfigurations()
+
+        statusMenuController.delegate = self
+        statusMenuController.configurations = configurations.configurations.map {$0.name}
+    }
+
+    func quitClicked() {
+        NSApplication.shared().terminate(self)
+    }
+
+    func configurationClicked(_ index: Int) {
+        NSLog("configuration \(index) clicked")
     }
 }
