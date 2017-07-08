@@ -48,6 +48,21 @@ class OpenVpnProcessTests: XCTestCase {
 
         XCTAssert(monitor.output == "123\n123\n")
     }
+
+    func testAccurateRunningStatus() {
+        let process = OpenVpnProcess("/bin/sh", "-r")
+
+        XCTAssert(!process.isRunning)
+
+        process.launch()
+
+        XCTAssert(process.isRunning)
+
+        process.terminate()
+        process.wait()
+
+        XCTAssert(!process.isRunning)
+    }
 }
 
 // TODO: replace with some proper mock

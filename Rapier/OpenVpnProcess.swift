@@ -20,6 +20,12 @@ class OpenVpnProcess {
         configPath = config
     }
 
+    var isRunning: Bool {
+        get {
+            return process?.isRunning ?? false
+        }
+    }
+
     func launch() {
         if (process != nil) {
             return
