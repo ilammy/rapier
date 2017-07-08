@@ -14,8 +14,23 @@ struct Configuration {
 
 /// Initialize the configuration list.
 func loadConfigurations() -> [Configuration] {
-    // TODO: use application settings or something to store this hardcode
-    return [
-        Configuration(name: "Default", path: "~/Documents/openvpn.conf")
-    ]
+    UserDefaults.standard.register(defaults: [
+        // TODO: set default to empty
+        "Configurations": [
+            ["name": "Default", "path": "/Users/ilammy/Documents/openvpn.conf"],
+        ]
+    ])
+
+    var configurations: [Configuration] = []
+
+    for entry in UserDefaults.standard.array(forKey: "Configurations") ?? [] {
+        if let dict = entry as? [String: String] {
+            let (name, path) = (dict["name"], dict["path"])
+            if name != nil && path != nil {
+                configurations.append(Configuration(name: name!, path: path!))
+            }
+        }
+    }
+
+    return configurations
 }

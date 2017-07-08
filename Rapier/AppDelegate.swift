@@ -10,9 +10,11 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate, StatusMenuDelegate {
     @IBOutlet weak var statusMenuController: StatusMenuController!
 
-    var configurations: [Configuration] = loadConfigurations()
+    var configurations: [Configuration] = []
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        configurations = loadConfigurations()
+
         statusMenuController.delegate = self
         statusMenuController.configurations = configurations.map {$0.name}
     }
