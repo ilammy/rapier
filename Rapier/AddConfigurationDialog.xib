@@ -37,6 +37,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="selectClicked:" target="-2" id="qBh-LU-3u3"/>
+                        </connections>
                     </button>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYK-3y-LKr">
                         <rect key="frame" x="89" y="62" width="216" height="22"/>
@@ -84,7 +87,7 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="cancelClicked:" target="-2" id="GCf-ig-u28"/>
+                            <action selector="cancelClicked:" target="-2" id="I73-UK-usg"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wK9-Li-FDS">

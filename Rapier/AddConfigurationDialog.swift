@@ -22,4 +22,20 @@ class AddConfigurationDialog: NSWindowController {
     @IBAction func cancelClicked(_ sender: Any) {
         self.close()
     }
+
+    @IBAction func selectClicked(_ sender: Any) {
+        let dialog = NSOpenPanel()
+
+        dialog.allowsMultipleSelection = false
+        dialog.canChooseFiles = true
+        dialog.canChooseDirectories = false
+
+        dialog.title = "Select OpenVPN configuration"
+
+        if dialog.runModal() == NSFileHandlingPanelOKButton {
+            let url = dialog.urls.first!
+
+            locationTextField?.stringValue = url.path
+        }
+    }
 }
