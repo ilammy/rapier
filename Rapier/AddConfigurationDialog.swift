@@ -6,13 +6,14 @@
 
 import Cocoa
 
-class AddConfigurationDialog: NSWindowController {
+class AddConfigurationDialog: NSWindowController, NSTextFieldDelegate {
     override var windowNibName: String? {
         return "AddConfigurationDialog"
     }
 
-    @IBOutlet weak var nameTextField: NSTextField?
-    @IBOutlet weak var locationTextField: NSTextField?
+    @IBOutlet weak var nameTextField: NSTextField!
+    @IBOutlet weak var locationTextField: NSTextField!
+    @IBOutlet weak var addButton: NSButton!
 
     func resetState() {
         nameTextField?.stringValue = ""
@@ -44,6 +45,20 @@ class AddConfigurationDialog: NSWindowController {
     @IBAction func addClicked(_ sender: Any) {
         self.close()
 
-        onSuccess?((nameTextField?.stringValue)!, (locationTextField?.stringValue)!)
+        onSuccess?(nameTextField.stringValue, locationTextField.stringValue)
+    }
+
+    override func windowDidLoad() {
+        super.windowDidLoad()
+
+        nameTextField?.delegate = self
+        locationTextField?.delegate = self
+    }
+
+    override func controlTextDidChange(_ obj: Notification) {
+        let nameEmpty = nameTextField.stringValue.isEmpty
+        let pathEmpty = locationTextField.stringValue.isEmpty
+
+        addButton.isEnabled = !nameEmpty && !pathEmpty
     }
 }

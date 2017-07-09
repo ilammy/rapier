@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AddConfigurationDialog" customModule="Rapier" customModuleProvider="target">
             <connections>
+                <outlet property="addButton" destination="wK9-Li-FDS" id="8HO-Rm-wAr"/>
                 <outlet property="locationTextField" destination="vYK-3y-LKr" id="x3H-eM-Oea"/>
                 <outlet property="nameTextField" destination="0KT-YO-KRS" id="alm-Ej-7Eu"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="sKl-jX-YqY"/>
@@ -92,9 +93,12 @@ Gw
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wK9-Li-FDS">
                         <rect key="frame" x="307" y="13" width="81" height="32"/>
-                        <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6MC-J7-IEU">
+                        <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6MC-J7-IEU">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                         </buttonCell>
                         <connections>
                             <action selector="addClicked:" target="-2" id="1HY-cH-Rvn"/>
