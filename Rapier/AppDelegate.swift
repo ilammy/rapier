@@ -26,4 +26,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, StatusMenuDelegate {
     func configurationClicked(_ index: Int) {
         NSLog("configuration \(index) clicked")
     }
+
+    private var _configurationDialog = AddConfigurationDialog()
+
+    func addConfigurationClicked() {
+        _configurationDialog.resetState()
+        _configurationDialog.showWindow(self)
+    }
 }

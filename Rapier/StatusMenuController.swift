@@ -49,9 +49,14 @@ class StatusMenuController: NSObject {
 
         delegate?.configurationClicked(index)
     }
+
+    @IBAction func addConfigurationClicked(_ sender: NSMenuItem) {
+        delegate?.addConfigurationClicked()
+    }
 }
 
 protocol StatusMenuDelegate {
     func configurationClicked(_ index: Int)
+    func addConfigurationClicked()
     func quitClicked()
 }
