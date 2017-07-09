@@ -18,6 +18,7 @@ class AddConfigurationDialog: NSWindowController, NSTextFieldDelegate {
     func resetState() {
         nameTextField?.stringValue = ""
         locationTextField?.stringValue = ""
+        updateAddButtonState()
     }
 
     @IBAction func cancelClicked(_ sender: Any) {
@@ -37,6 +38,7 @@ class AddConfigurationDialog: NSWindowController, NSTextFieldDelegate {
             let url = dialog.urls.first!
 
             locationTextField?.stringValue = url.path
+            updateAddButtonState()
         }
     }
 
@@ -56,6 +58,10 @@ class AddConfigurationDialog: NSWindowController, NSTextFieldDelegate {
     }
 
     override func controlTextDidChange(_ obj: Notification) {
+        updateAddButtonState()
+    }
+
+    private func updateAddButtonState() {
         let nameEmpty = nameTextField.stringValue.isEmpty
         let pathEmpty = locationTextField.stringValue.isEmpty
 
