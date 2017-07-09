@@ -38,4 +38,12 @@ class AddConfigurationDialog: NSWindowController {
             locationTextField?.stringValue = url.path
         }
     }
+
+    var onSuccess: ((_ name: String, _ path: String) -> Void)? = nil
+
+    @IBAction func addClicked(_ sender: Any) {
+        self.close()
+
+        onSuccess?((nameTextField?.stringValue)!, (locationTextField?.stringValue)!)
+    }
 }

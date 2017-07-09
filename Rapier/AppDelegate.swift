@@ -12,11 +12,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, StatusMenuDelegate {
 
     var configurations: [Configuration] = []
 
+    private var _configurationDialog = AddConfigurationDialog()
+
     func applicationDidFinishLaunching(_ notification: Notification) {
         configurations = loadConfigurations()
 
         statusMenuController.delegate = self
         statusMenuController.configurations = configurations.map {$0.name}
+
+        _configurationDialog.onSuccess = { name, path in
+            NSLog("adding \(name) @ \(path)")
+        }
     }
 
     func quitClicked() {
@@ -26,8 +32,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, StatusMenuDelegate {
     func configurationClicked(_ index: Int) {
         NSLog("configuration \(index) clicked")
     }
-
-    private var _configurationDialog = AddConfigurationDialog()
 
     func addConfigurationClicked() {
         _configurationDialog.resetState()

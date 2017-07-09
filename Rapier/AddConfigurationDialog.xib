@@ -8,8 +8,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AddConfigurationDialog" customModule="Rapier" customModuleProvider="target">
             <connections>
-                <outlet property="locationTextField" destination="vYK-3y-LKr" id="cS1-7e-GEa"/>
-                <outlet property="nameTextField" destination="0KT-YO-KRS" id="N3s-9y-obl"/>
+                <outlet property="locationTextField" destination="vYK-3y-LKr" id="x3H-eM-Oea"/>
+                <outlet property="nameTextField" destination="0KT-YO-KRS" id="alm-Ej-7Eu"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="sKl-jX-YqY"/>
             </connections>
         </customObject>
@@ -38,7 +38,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="selectClicked:" target="-2" id="qBh-LU-3u3"/>
+                            <action selector="selectClicked:" target="-2" id="iF9-bE-bLF"/>
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYK-3y-LKr">
@@ -87,7 +87,7 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="cancelClicked:" target="-2" id="I73-UK-usg"/>
+                            <action selector="cancelClicked:" target="-2" id="6d5-Yd-HIz"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wK9-Li-FDS">
@@ -96,6 +96,9 @@ Gw
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="addClicked:" target="-2" id="1HY-cH-Rvn"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
