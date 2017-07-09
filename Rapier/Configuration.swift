@@ -15,10 +15,7 @@ struct Configuration {
 /// Initialize the configuration list.
 func loadConfigurations() -> [Configuration] {
     UserDefaults.standard.register(defaults: [
-        // TODO: set default to empty
-        "Configurations": [
-            ["name": "Default", "path": "/Users/ilammy/Documents/openvpn.conf"],
-        ]
+        "Configurations": []
     ])
 
     var configurations: [Configuration] = []
@@ -34,3 +31,11 @@ func loadConfigurations() -> [Configuration] {
 
     return configurations
 }
+
+func saveConfigurations(_ configurations: [Configuration]) {
+    UserDefaults.standard.set(configurations.map {
+        ["name": $0.name, "path": $0.path]
+    }, forKey: "Configurations")
+}
+
+// TODO: unit tests for setting format

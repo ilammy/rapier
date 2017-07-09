@@ -21,7 +21,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, StatusMenuDelegate {
         statusMenuController.configurations = configurations.map {$0.name}
 
         _configurationDialog.onSuccess = { name, path in
-            NSLog("adding \(name) @ \(path)")
+            self.configurations.append(Configuration(name: name, path: path))
+            self.statusMenuController.configurations = self.configurations.map {$0.name}
+            saveConfigurations(self.configurations)
         }
     }
 
